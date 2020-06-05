@@ -1,0 +1,40 @@
+
+.container1 {
+   display: flex;
+   border: 2px solid var(--secondary);
+   margin: 5px auto;
+}
+
+.teste {
+   margin: 1rem auto;
+}
+@media screen and (min-width: 576px) {
+   /* For tablets: */
+ }
+ @media screen and (min-width: 768px) {
+   /* For desktop: */
+
+   .container-img {
+      max-width: 18.75rem;
+   }
+
+   .container-img img {
+      max-width: 100%;
+      height: auto;
+   }
+   .container-body {
+      margin-left: 20px;
+   }
+   .container-titles{
+
+   }
+   .title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 0;
+   }
+   .info {
+      font-weight: lighter;
+      font-style: italic;
+   }
+ }
