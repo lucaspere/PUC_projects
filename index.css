@@ -4,11 +4,13 @@ a {
    cursor: pointer;
 }
 .teste {
-   margin: 1rem auto;
+   margin: 3rem auto 1rem auto;
+}
+main {
+   margin-top: 25px;
 }
 
 @media screen and (min-width: 0) {
-   /* For tablets: */
    .container1 {
       border: 2px solid var(--secondary);
       margin: 5px auto;
@@ -21,6 +23,16 @@ a {
    .container-img img {
       max-width: 100%;
       height: auto;
+   }
+   .container-body {
+      margin: 15px;
+   }
+   .info {
+      font-weight: lighter;
+      font-style: italic;
+   }
+   .title {
+      font-weight: 600;
    }
    .container-nav {
       width: 300px;
@@ -35,7 +47,6 @@ a {
  }
 
 @media screen and (min-width: 576px) {
-   /* For tablets: */
    .container1 {
       border: 2px solid var(--secondary);
       margin: 5px auto;
@@ -62,7 +73,6 @@ a {
 }
  }
  @media screen and (min-width: 768px) {
-   /* For desktop: */
    .container1 {
       display: flex;
       border: 2px solid var(--secondary);
@@ -79,16 +89,13 @@ a {
       max-width: unset;
    }
    .container-body {
+      margin: unset;
       margin-left: 20px;
    }
    .title {
       font-size: 18px;
       font-weight: 600;
       margin-bottom: 0;
-   }
-   .info {
-      font-weight: lighter;
-      font-style: italic;
    }
 
    section:nth-child(2){
