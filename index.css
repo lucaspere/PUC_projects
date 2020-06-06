@@ -1,6 +1,8 @@
 
 
-
+a {
+   cursor: pointer;
+}
 .teste {
    margin: 1rem auto;
 }
@@ -68,12 +70,13 @@
    }
 
    .container-img {
-      max-width: 18.75rem;
+      max-width: unset;
    }
 
    .container-img img {
-      max-width: 100%;
+      width: 250px;
       height: auto;
+      max-width: unset;
    }
    .container-body {
       margin-left: 20px;
