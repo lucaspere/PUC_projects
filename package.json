@@ -1,0 +1,19 @@
+{
+  "name": "clab-pcr-forese",
+  "version": "1.0.0",
+  "description": "Trabalho de aplicação web do curso de engenharia de software na PUC Minas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucaspere/CLAB-Pcr-forese.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lucaspere/CLAB-Pcr-forese/issues"
+  },
+  "homepage": "https://github.com/lucaspere/CLAB-Pcr-forese#readme"
+}
