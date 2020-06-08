@@ -14,94 +14,66 @@
          Cálculo para PCR
       </h1>
       <form>
-         <table>
-            <caption>Tabela para cálculos de reagentes</caption>
-            <thead>
-               <tr>
-                  <th>Produto</th>
-                  <th>Concentração em Estoque</th>
-                  <th>Concentração em tubo</th>
-                  <th>Volume do tubo</th>
-                  <th>Volumo Mix</th>
-               </tr>
-            </thead>
-            <tbody>
-               <tr>
-                  <td>DNA</td>
-                  <td>25ng/&mu;l</td>
-                  <td>25ng/&mu;l</td>
-                  <td>1&mu;l</td>
-                  <td>NÃO SE COLOCA NO MIX</td>
-               </tr>
-               <tr>
-                  <td>Água</td>
-                  <td>-</td>
-                  <td>-/&mu;l</td>
-                  <td>3,4&mu;l</td>
-                  <td>27,2&mu;l</td>
-               </tr>
-               <tr>
-                  <td>Magnésio</td>
-                  <td>50mM</td>
-                  <td>2,5mM</td>
-                  <td>0,5&mu;l</td>
-                  <td>4,0&mu;l</td>
-               </tr>
-               <tr>
-                  <td>DNTP's</td>
-                  <td>10mM/&mu;l</td>
-                  <td>2,0mM</td>
-                  <td>2&mu;l</td>
-                  <td>16&mu;l</td>
-               </tr>
-               <tr>
-                  <td>Tampão</td>
-                  <td>10x</td>
-                  <td>1x</td>
-                  <td>1&mu;l</td>
-                  <td>8&mu;l</td>
-               </tr>
-               <tr>
-                  <td>taq</td>
-                  <td>5/&mu;l</td>
-                  <td>0,05/&mu;l</td>
-                  <td>0,1&mu;l</td>
-                  <td>0,8&mu;l</td>
-               </tr>
-               <tr>
-                  <td>Primer 1</td>
-                  <td>10pmol</td>
-                  <td>10pmol</td>
-                  <td>1&mu;l</td>
-                  <td>8,0&mu;l</td>
-               </tr>
-               <tr>
-                  <td>Primer 2</td>
-                  <td>10pmol</td>
-                  <td>10pmol</td>
-                  <td>1&mu;l</td>
-                  <td>8,0&mu;l</td>
-               </tr>
-            </tbody>
-       </table>
+         <div>
+            <div>
+               <label for="procut">Produto</label>
+               <input id="product" type="text" name="product" placeholder="Quais reagentes você irá utilizar?">
+            </div>
+            <div>
+               <label for="sc">Concentração do Estoque</label>
+               <input id="sc" type="text" name="stockConcentration">
+            </div>
+            <div>
+               <label for="tc">Concentração do Tubo</label>
+               <input id="tc" type="text" name="tubeConcentration">
+            </div>
+         </div>
+         <div>
+            <div>
+               <label for="tv">Volume do Tubo</label>
+               <input id="tv" type="text" name="tubeVolume" placeholder="Quantos µl vai usar?">
+            </div>
+            <div>
+               <label for="tm">Volume do Mix</label>
+               <input id="tm" type="text" name="tubeMix">
+            </div>
+         </div>
+         <button type="submit">ADICIONAR</button>
+      </form>
+      <table>
+         <caption>Tabela para cálculos de reagentes</caption>
+         <thead>
+            <tr>
+               <th>Produto</th>
+               <th>Concentração em Estoque</th>
+               <th>Concentração em tubo</th>
+               <th>Volume do tubo</th>
+               <th>Volumo Mix</th>
+            </tr>
+         </thead>
+         <tbody>
+
+         </tbody>
+      </table>
    </div>
    <script>
-      const input = document.querySelector('input');
       const form = document.querySelector('form');
-      const divList = document.querySelector('.list');
-      let text = '';
+      const tableBody = document.querySelector('tbody');
 
-      input.oninput = (e) => {
-         text = e.target.value
-      }
       form.onsubmit = (e) => {
          e.preventDefault();
 
-         const h3 = document.createElement('h3');
-         h3.textContent = text;
-         divList.appendChild(h3);
+         const inputs = document.querySelectorAll('input[type=text]');
+         const tr = document.createElement('tr');
 
-         input.value = '';
+         inputs.forEach(data => {
+            const td = document.createElement('td');
+            td.textContent = data.value;
+            tr.appendChild(td);
+            data.value = '';
+         })
+
+         tableBody.appendChild(tr)
       }
    </script>
 </body>
