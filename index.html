@@ -1,13 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>CLAB PCR'FORESE</title>
+   <link rel="stylesheet" href="./index.css">
 </head>
+
 <body>
-   <h1>
-      Projeto CLAB PCR'FORESE
-   </h1>
+   <div>
+      <h1>
+         Cálculo para PCR
+      </h1>
+      <form>
+         <table>
+            <caption>Tabela para cálculos de reagentes</caption>
+            <thead>
+               <tr>
+                  <th>Produto</th>
+                  <th>Concentração em Estoque</th>
+                  <th>Concentração em tubo</th>
+                  <th>Volume do tubo</th>
+                  <th>Volumo Mix</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>DNA</td>
+                  <td>25ng/&mu;l</td>
+                  <td>25ng/&mu;l</td>
+                  <td>1&mu;l</td>
+                  <td>NÃO SE COLOCA NO MIX</td>
+               </tr>
+               <tr>
+                  <td>Água</td>
+                  <td>-</td>
+                  <td>-/&mu;l</td>
+                  <td>3,4&mu;l</td>
+                  <td>27,2&mu;l</td>
+               </tr>
+               <tr>
+                  <td>Magnésio</td>
+                  <td>50mM</td>
+                  <td>2,5mM</td>
+                  <td>0,5&mu;l</td>
+                  <td>4,0&mu;l</td>
+               </tr>
+               <tr>
+                  <td>DNTP's</td>
+                  <td>10mM/&mu;l</td>
+                  <td>2,0mM</td>
+                  <td>2&mu;l</td>
+                  <td>16&mu;l</td>
+               </tr>
+               <tr>
+                  <td>Tampão</td>
+                  <td>10x</td>
+                  <td>1x</td>
+                  <td>1&mu;l</td>
+                  <td>8&mu;l</td>
+               </tr>
+               <tr>
+                  <td>taq</td>
+                  <td>5/&mu;l</td>
+                  <td>0,05/&mu;l</td>
+                  <td>0,1&mu;l</td>
+                  <td>0,8&mu;l</td>
+               </tr>
+               <tr>
+                  <td>Primer 1</td>
+                  <td>10pmol</td>
+                  <td>10pmol</td>
+                  <td>1&mu;l</td>
+                  <td>8,0&mu;l</td>
+               </tr>
+               <tr>
+                  <td>Primer 2</td>
+                  <td>10pmol</td>
+                  <td>10pmol</td>
+                  <td>1&mu;l</td>
+                  <td>8,0&mu;l</td>
+               </tr>
+            </tbody>
+       </table>
+   </div>
+   <script>
+      const input = document.querySelector('input');
+      const form = document.querySelector('form');
+      const divList = document.querySelector('.list');
+      let text = '';
+
+      input.oninput = (e) => {
+         text = e.target.value
+      }
+      form.onsubmit = (e) => {
+         e.preventDefault();
+
+         const h3 = document.createElement('h3');
+         h3.textContent = text;
+         divList.appendChild(h3);
+
+         input.value = '';
+      }
+   </script>
 </body>
+
 </html>
