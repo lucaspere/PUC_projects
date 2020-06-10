@@ -7,7 +7,11 @@ const inputTableTitle = document.querySelector("#inputTableTitle");
 const buttonSample = document.querySelector('#amostra');
 const captionTable = document.querySelector("#captionTable");
 const inputs = document.querySelectorAll('form input[type=text]');
+const select = document.querySelector('select');
 
+select.onchange = function(e) {
+   inputs[0].value = e.target.value;
+}
 let count = 0;
 
 body.onload = function () {

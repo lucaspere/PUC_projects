@@ -13,7 +13,8 @@
       <h1>
          Cálculo para PCR
       </h1>
-      <div>
+      <fieldset>
+         <legend>Definição da Tabela</legend>
          <div>
             <label for="tm">Quantidade de amostras</label>
             <input id="tm" type="number" name="tubeMix" min="1" placeholder="Quantidade de linhas da tabela">
@@ -23,11 +24,23 @@
             <input id="inputTableTitle" type="text" name="inputTableTitle" min="1" placeholder="Define o título">
          </div>
          <button type="button" id="amostra">CRIAR TABELA</button>
-      </div>
+      </fieldset>
       <form>
          <div>
-            <label for="procut">Produto</label>
-            <input id="product" type="text" name="product" placeholder="Quais reagentes você irá utilizar?">
+            <label>Produto
+               <select autofocus>
+                  <option value="" selected>Nenhum</option>
+                  <option value="DNA">DNA</option>
+                  <option value="Água">Água</option>
+                  <option value="DNTP's">DNTP's</option>
+                  <option value="Magnésio">Magnésio</option>
+                  <option value="Tampão">Tampão;</option>
+                  <option value="Primer 1">Primer 1</option>
+                  <option value="Primer 2">Primer 2</option>
+               </select>
+               <span>ou</span>
+               <input id="product" type="text" name="product" placeholder="Quais reagentes você irá utilizar?">
+            </label>
          </div>
          <div>
             <label for="sc">Concentração do Estoque</label>
