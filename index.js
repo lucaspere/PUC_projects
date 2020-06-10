@@ -31,8 +31,8 @@ function onsubmitHandler(e) {
       tableRows[count].childNodes[i].textContent = inputs[i].value;
       inputs[i].value = '';
    }
-
    count++;
+   select.value = "";
 }
 
 function onclickHandler() {
