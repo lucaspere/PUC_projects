@@ -11,6 +11,7 @@ const inputs = document.querySelectorAll('form input[type=text]');
 let count = 0;
 
 body.onload = function () {
+   form.style.display = "none";
    count = 0;
 }
 
@@ -49,4 +50,7 @@ function onclickHandler() {
 
    tubeMix.value = '';
    tubeMix.setAttribute('disabled', true);
+   buttonSample.setAttribute('disabled', true);
+
+   form.style.display = "initial";
 }
