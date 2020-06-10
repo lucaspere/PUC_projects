@@ -13,69 +13,49 @@
       <h1>
          Cálculo para PCR
       </h1>
-      <form>
+      <div>
          <div>
-            <div>
-               <label for="procut">Produto</label>
-               <input id="product" type="text" name="product" placeholder="Quais reagentes você irá utilizar?">
-            </div>
-            <div>
-               <label for="sc">Concentração do Estoque</label>
-               <input id="sc" type="text" name="stockConcentration">
-            </div>
-            <div>
-               <label for="tc">Concentração do Tubo</label>
-               <input id="tc" type="text" name="tubeConcentration">
-            </div>
+            <label for="tm">Quantidade de amostras</label>
+            <input id="tm" type="number" name="tubeMix" min="1" placeholder="Quantidade de linhas da tabela">
          </div>
          <div>
-            <div>
-               <label for="tv">Volume do Tubo</label>
-               <input id="tv" type="text" name="tubeVolume" placeholder="Quantos µl vai usar?">
-            </div>
-            <div>
-               <label for="tm">Volume do Mix</label>
-               <input id="tm" type="text" name="tubeMix">
-            </div>
+            <label for="inputTableTitle">Título da Tabela</label>
+            <input id="inputTableTitle" type="text" name="inputTableTitle" min="1" placeholder="Define o título">
+         </div>
+         <button type="button" id="amostra">Criar</button>
+      </div>
+      <form>
+         <div>
+            <label for="procut">Produto</label>
+            <input id="product" type="text" name="product" placeholder="Quais reagentes você irá utilizar?">
+         </div>
+         <div>
+            <label for="sc">Concentração do Estoque</label>
+            <input id="sc" type="text" name="stockConcentration">
+         </div>
+         <div>
+            <label for="tc">Concentração do Tubo</label>
+            <input id="tc" type="text" name="tubeConcentration">
+         </div>
+         <div>
+            <label for="tv">Volume do Tubo</label>
+            <input id="tv" type="text" name="tubeVolume" placeholder="Quantos µl vai usar?">
          </div>
          <button type="submit">ADICIONAR</button>
       </form>
       <table>
-         <caption>Tabela para cálculos de reagentes</caption>
+         <caption id="captionTable"></caption>
          <thead>
-            <tr>
-               <th>Produto</th>
-               <th>Concentração em Estoque</th>
-               <th>Concentração em tubo</th>
-               <th>Volume do tubo</th>
-               <th>Volumo Mix</th>
-            </tr>
+            <th>Produto</th>
+            <th>Concentração em Estoque</th>
+            <th>Concentração em tubo</th>
+            <th>Volume do tubo</th>
+            <th>Volume Mix</th>
          </thead>
-         <tbody>
-
-         </tbody>
+         <tbody></tbody>
       </table>
    </div>
-   <script>
-      const form = document.querySelector('form');
-      const tableBody = document.querySelector('tbody');
-
-      form.onsubmit = (e) => {
-         e.preventDefault();
-
-         const inputs = document.querySelectorAll('input[type=text]');
-         const tr = document.createElement('tr');
-
-         inputs.forEach(data => {
-            const td = document.createElement('td');
-            td.textContent = data.value;
-            tr.appendChild(td);
-            data.value = '';
-         })
-
-         tableBody.appendChild(tr)
-      }
-   </script>
+   <script src="index.js"></script>
 </body>
 
 </html>
