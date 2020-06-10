@@ -1,44 +1,37 @@
+const body = document.querySelector('body');
 const form = document.querySelector('form');
 const tableHead = document.querySelector('thead');
 const tableBody = document.querySelector('tbody');
 const tubeMix = document.querySelector('input[name=tubeMix]');
 const inputTableTitle = document.querySelector("#inputTableTitle");
-const buttonAmostra = document.querySelector('#amostra');
+const buttonSample = document.querySelector('#amostra');
 const captionTable = document.querySelector("#captionTable");
+const inputs = document.querySelectorAll('form input[type=text]');
 
+let count = 0;
 
-let check = 0;
-if (check) {
-   tubeMix.setAttribute('disabled', true);
+body.onload = function () {
+   count = 0;
 }
 
-form.onsubmit = (e) => {
+form.onsubmit = onsubmitHandler;
+buttonSample.onclick = onclickHandler;
+
+
+function onsubmitHandler(e) {
    e.preventDefault();
 
-   const inputs = document.querySelectorAll('input[type=text]');
-   const tr = document.createElement('tr');
+   const tableRows = document.querySelectorAll('tbody tr');
+   for(let i = 0; i < tableRows[count].childNodes.length; i++) {
+      tableRows[count].childNodes[i].textContent = inputs[i].value;
+      inputs[i].value = '';
+   }
 
-   inputs.forEach(data => {
-      const td = document.createElement('td');
-      td.textContent = data.name === "tubeMix" ? '' : data.value;
-      tr.appendChild(td);
-      data.value = '';
-   })
-
-   tableBody.appendChild(tr)
+   count++;
 }
 
-
-function handleSubmit(e) {
-   e.preventDefault();
-
-
-}
-
-buttonAmostra.onclick = function () {
-
+function onclickHandler() {
    const tubeMixValue = Number.parseInt(tubeMix.value);
-   const inputs = document.querySelectorAll('form input[type=text]');
 
    captionTable.textContent = inputTableTitle.value;
 
@@ -51,8 +44,9 @@ buttonAmostra.onclick = function () {
       tableBody.appendChild(tr);
    }
 
-   tubeMix.value = '';
-   tubeMix.value = '';
+   inputTableTitle.value = '';
    inputTableTitle.setAttribute('disabled', true);
-   inputTableTitle.setAttribute('disabled', true);
+
+   tubeMix.value = '';
+   tubeMix.setAttribute('disabled', true);
 }
