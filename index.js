@@ -9,26 +9,27 @@ const captionTable = document.querySelector("#captionTable");
 const inputs = document.querySelectorAll('form input[type=text]');
 const select = document.querySelector('select');
 
-select.onchange = function(e) {
-   inputs[0].value = e.target.value;
-}
 let count = 0;
 
-body.onload = function () {
-   form.style.display = "none";
-   count = 0;
-}
-
+select.onchange = onchangeHandler;
+body.onload = defaultValues;
 form.onsubmit = onsubmitHandler;
 buttonSample.onclick = onclickHandler;
 
 
 function onsubmitHandler(e) {
    e.preventDefault();
-
+   let product = 1;
    const tableRows = document.querySelectorAll('tbody tr');
-   for(let i = 0; i < tableRows[count].childNodes.length; i++) {
-      tableRows[count].childNodes[i].textContent = inputs[i].value;
+   for (let i = 0; i < tableRows[count].childNodes.length; i++) {
+      if(i > 0) {
+         let stringWithoutComma = inputs[i].value.replace(',', '.');
+         product *= i !== 4 ? Number.parseFloat(stringWithoutComma) : (Number.parseFloat(stringWithoutComma) + 2);
+      }
+      tableRows[count].childNodes[i].textContent = i !== 4 ? inputs[i].value
+      : tableRows[count].childNodes[0].textContent.toUpperCase() === 'DNA' ? 'NÃO SE COLOCA NO MIX'
+      : product;
+      
       inputs[i].value = '';
    }
    count++;
@@ -57,4 +58,17 @@ function onclickHandler() {
    buttonSample.setAttribute('disabled', true);
 
    form.style.display = "initial";
+}
+
+function defaultValues() {
+   for (let i = 0; i < inputs.length; i++) {
+      inputs[i].value = '';
+   }
+   select.value = "";
+   form.style.display = "none";
+   count = 0;
+}
+
+function onchangeHandler(e) {
+   inputs[0].value = e.target.value;
 }
