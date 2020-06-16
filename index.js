@@ -22,7 +22,7 @@ function onsubmitHandler(e) {
    let product = 1;
    const tableRows = document.querySelectorAll('tbody tr');
    for (let i = 0; i < tableRows[count].childNodes.length; i++) {
-      if(i > 0) {
+      if(i > 2) {
          let stringWithoutComma = inputs[i].value.replace(',', '.');
          product *= i !== 4 ? Number.parseFloat(stringWithoutComma) : (Number.parseFloat(stringWithoutComma) + 2);
       }
