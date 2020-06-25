@@ -36,9 +36,9 @@
             </li>
             <li id="input-nav" class="nav-item">
                <div class="input-group mb-3">
-                  <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  <input id="search-input" type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
                   <div class="input-group-append">
-                    <button class="btn btn-outline-primary" type="button">OK</button>
+                    <button class="btn btn-outline-primary" id="search-button" type="button">OK</button>
                   </div>
                 </div>
             </li>
@@ -48,15 +48,21 @@
    <main class="container">
       <div class="row">
          <section class="col-12 col-md-10">
-            <h1>Principais Manchetes</h1>
+            <div id="div-title">
+               <h1></h1>
+               <button>Salvar</button>
+            </div>
             <div class="teste">
             </div>
          </section>
          <aside class="col-6 col-md-2">
-            <h3>Pesquisas</h3>
-
-            <hr>
             <nav class="container-nav">
+               <h3>Pesquisas</h3>
+               <ul id="search-ul" class="container-nav-item">
+
+               </ul>
+               <hr>
+               <div>
                <h3>Fontes</h3>
                <ul class="container-nav-item">
                   <li class="nav-item">
@@ -72,6 +78,7 @@
                      <a href="./pages/foxNews.html" class="nav-link">Fox News</a>
                   </li>
                </ul>
+            </div>
             </nav>
          </aside>
       </div>
