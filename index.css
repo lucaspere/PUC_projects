@@ -3,37 +3,216 @@ html {
   box-sizing: border-box;
 }
 
+body {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #333;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "PT Serif", serif;
+}
+
+button {
+  background-color: green;
+  border: none;
+  border-radius: 5px;
+  padding: 4px;
+  color: white;
+  outline:none;
+  cursor: pointer;
+  transition-duration: 0.4s;
+  margin: 3px;
+  width: 98%;
+}
+
+button:disabled {
+  background-color: rgb(0, 75, 0);
+  border: none;
+  border-radius: 5px;
+  padding: 4px;
+  color: white;
+  outline:none;
+  opacity: 0.6;
+}
+
+button:hover:enabled {
+  background-color: rgb(0, 75, 0);
+  border: none;
+  border-radius: 5px;
+  padding: 4px;
+  color: white;
+  outline: none;
+}
+
+input {
+  width: 100%;
+}
+
+fieldset input {
+  width: 100%;
+  border: 2px rgb(0, 75, 0) solid;
+}
+
+select, input {
+  padding: 5px;
+  border-radius: 0px;
+  background-color: rgb(239, 239, 239);
+  box-sizing: border-box;
+}
+
+div #esq {
+  display: grid;
+  width: 33%;
+}
+
+fieldset, form {
+  width: 95%;
+  border-radius: 5px;
+  float: left;
+  display: flex;
+}
+/*não sei pq da errado*/
+button:disabled + fieldset {
+  display: none;
+}
+
+@media screen and (min-width: 951px) {
+  form {
+    position: sticky;
+    top: 20vh;
+  }
+  
+  button#hd {
+    display: none;
+    
+  }
+}
+
+fieldset div, form div {
+  width: 100%;
+}
+
+fieldset div {
+  padding: 5px;
+}
+
+fieldset input {
+  border: 2px rgb(0, 75, 0) solid;
+}
+
+form div input {
+  border: 2px rgb(0, 75, 0) solid;
+  border-bottom: none;
+}
+
+fieldset label{
+  padding: 5px;
+  position: absolute;
+  transform-origin: top left;
+}
+
+form label {
+  padding: 5px;
+  position: absolute;
+  transform-origin: top left;
+}
+
+input, label, button {
+  border-width: 0px;
+  height: 60px;
+}
+
+label {
+  transform: scale(.80);
+  padding: 5px;
+  cursor: text;
+  max-height: 15px;
+}
+
+div.ini {
+  display: inline-block;
+  background-color: rgb(0, 75, 0);
+}
+
+span {
+  text-align: justify;
+  color: white;
+}
+
+label.ini {
+  text-align: start;
+}
+
+input.ini {
+  float: right;
+  width: 65%;
+  border-bottom: none;
+}
+
+input.ult {
+  border-bottom: 2px rgb(0, 75, 0) solid;
+}
+
+input, select, button {
+  font-size: medium;
+}
+
+select.ini {
+  height: 60px;
+  width: 27%;
+  border: 2px rgb(0, 75, 0) solid;
+  border-bottom: none;
+}
+
+label{
+  text-align: right;
+}
+
+div input {
+  text-align: left;
+}
+
 table {
-  border-collapse: collapse;
   border: 2px solid rgb(200,200,200);
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   font-size: 0.8rem;
+  width: 66%;
+  border: rgb(220,220,220);
+  border-collapse: collapse;
 }
 
 td, th {
-  border: 1px solid rgb(190,190,190);
+  border-left: 2px solid rgb(220,220,220);
+  border-right: 2px solid rgb(220,220,220);
   padding: 10px 20px;
 }
 
 th {
-  background-color: rgb(235,235,235);
+  background-color: rgb(220,220,220);
+}
+
+tr {
+  border-bottom:2px solid rgb(220,220,220);
 }
 
 td {
   text-align: center;
 }
 
-tr:nth-child(even) td {
-  background-color: rgb(250,250,250);
-}
-
 tr:nth-child(odd) td {
-  background-color: rgb(245,245,245);
+  background-color: rgb(240, 240, 240);
 }
 
 caption {
   padding: 10px;
+  font-size: medium;
+  font-weight:bold;
+  height: 20px;
 }
+
 tbody {
   font-size: 90%;
   font-style: italic;
@@ -41,4 +220,71 @@ tbody {
 
 tfoot {
   font-weight: bold;
+}
+
+@media screen and (max-width: 950px) {
+  table {
+    width: 100%;
+  }
+
+  form, div #esq {
+    width: 98%;
+    position: fixed;
+    bottom: 0px;
+  }
+
+  form input, form select.ini, form button {
+    height: 48px;
+  }
+  
+  button#hd {
+    position: fixed;  
+    right: 3px;
+    width: 40px;
+    height: 40px;
+    bottom: 0px;
+    background-color: black;
+    opacity: .4;
+  }
+
+  form button#hd {
+    position: absolute;  
+    right: 3px;
+    width: 40px;
+    height: 40px;
+    top: 42px;
+    background-color: black;
+    opacity: .4;
+  }
+
+  button#hd:hover { 
+    opacity: .8;
+  }
+
+  button#hd {
+  }
+
+  table thead {
+    display: none;
+  }
+
+  table td {
+    display: flex;
+  }
+
+  table td::before {
+    font-weight: bold;
+    width: 50%;
+    text-align: start;
+  }
+  
+  table td:nth-of-type(1):before { content: "Produto"; }
+
+  table td:nth-of-type(2):before { content: "Concentração em Estoque"; }
+  
+  table td:nth-of-type(3):before { content: "Concentração em tubo"; }
+
+  table td:nth-of-type(4):before { content: "Volume do tubo"; }
+
+  table td:nth-of-type(5):before { content: "Volume Mix"; }
 }

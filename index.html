@@ -6,60 +6,69 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
    <title>CLAB PCR'FORESE</title>
    <link rel="stylesheet" href="./index.css">
+   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=PT+Serif|Open+Sans:300,400,600,700,800">
 </head>
 
 <body>
    <div class="container">
-      <h1>
+      <h1 style="text-align: center;">
          Cálculo para PCR
       </h1>
       <fieldset>
          <legend>Definição da Tabela</legend>
          <div>
             <label for="tm">Quantidade de Produtos</label>
-            <input id="tm" type="number" name="tubeMix" min="1" placeholder="Quantidade de linhas da tabela">
+            <input id="tm" type="number" name="tubeMix" min="1" max="100" placeholder="Quantidade de linhas da tabela">
          </div>
          <div>
             <label for="inputTableTitle">Título da Tabela</label>
-            <input id="inputTableTitle" type="text" name="inputTableTitle" min="1" placeholder="Define o título">
+            <input id="inputTableTitle" type="text" name="inputTableTitle" min="1" required placeholder="Define o título">
          </div>
-         <button type="button" id="amostra">CRIAR TABELA</button>
-      </fieldset>
-      <form>
          <div>
-            <label>Produto
-               <select autofocus>
-                  <option value="" selected>Nenhum</option>
-                  <option value="DNA">DNA</option>
-                  <option value="Água">Água</option>
-                  <option value="DNTP's">DNTP's</option>
-                  <option value="Magnésio">Magnésio</option>
-                  <option value="Tampão">Tampão;</option>
-                  <option value="Primer 1">Primer 1</option>
-                  <option value="Primer 2">Primer 2</option>
-               </select>
-               <span>ou</span>
-               <input id="product" type="text" name="product" placeholder="Quais reagentes você irá utilizar?">
-            </label>
+            <button type="button" id="amostra">ADICIONAR TABELA</button>
+            <button type="button" id="editarAmostra" disabled="true">REMOVER TABELA</button>
+         </div>
+      </fieldset>
+      <form id="esq">
+         <div style="height: 40px;"></div>
+         <div class="ini">
+            <button type="button" id="hd" onclick="hideForm()">X</button>
+            <label class="ini">Produto</label>
+            <select autofocus class="ini">
+               <option value="" selected>Nenhum</option>
+               <option value="DNA">DNA</option>
+               <option value="Água">Água</option>
+               <option value="DNTP's">DNTP's</option>
+               <option value="Magnésio">Magnésio</option>
+               <option value="Tampão">Tampão;</option>
+               <option value="Primer 1">Primer 1</option>
+               <option value="Primer 2">Primer 2</option>
+            </select>
+            <span>ou</span>   
+            <input class="ini" id="product" type="text" pattern="\D+" name="product" required placeholder="Quais reagentes você vai utilizar?">
          </div>
          <div>
             <label for="sc">Concentração do Estoque</label>
-            <input id="sc" type="text" name="stockConcentration">
+            <input id="sc" type="text" pattern="^\d+([.,]\d)?$" required name="stockConcentration">
          </div>
          <div>
             <label for="tc">Concentração do Tubo</label>
-            <input id="tc" type="text" name="tubeConcentration">
+            <input id="tc" type="text" pattern="^\d+([.,]\d)?$" required name="tubeConcentration">
          </div>
          <div>
             <label for="tv">Volume do Tubo</label>
-            <input id="tv" type="text" name="tubeVolume" placeholder="Quantos µl vai usar?">
+            <input id="tv" type="text" pattern="^\d+([.,]\d)?$" required name="tubeVolume" placeholder="Insira o valor do volume?">
          </div>
          <div>
             <label for="sample">Quantidade de Amostras</label>
-            <input id="sample" type="text" name="quantidadeDeAmostras" placeholder="Insira a quantidade de amostra">
+            <input class="ult" id="sample" type="text" pattern="^\d+" name="quantidadeDeAmostras" placeholder="Insira a quantidade de amostra">
          </div>
-         <button type="submit">ADICIONAR</button>
+         <div>
+            <label></label>
+            <button type="submit">ADICIONAR</button>
+         </div>
       </form>
+      <button type="button" id="hd" class="hd" style="" onclick="hideForm()">^</button>
       <table>
          <caption id="captionTable"></caption>
          <thead>

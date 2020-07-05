@@ -5,6 +5,7 @@ const tableBody = document.querySelector('tbody');
 const tubeMix = document.querySelector('input[name=tubeMix]');
 const inputTableTitle = document.querySelector("#inputTableTitle");
 const buttonSample = document.querySelector('#amostra');
+const buttonEditSample = document.querySelector('#editarAmostra');
 const captionTable = document.querySelector("#captionTable");
 const inputs = document.querySelectorAll('form input[type=text]');
 const select = document.querySelector('select');
@@ -16,6 +17,15 @@ body.onload = defaultValues;
 form.onsubmit = onsubmitHandler;
 buttonSample.onclick = onclickHandler;
 
+buttonEditSample.onclick = onEditHandler;
+
+function onEditHandler() {
+
+  while(tableBody.firstChild) {
+     tableBody.removeChild(tableBody.firstChild)
+  }
+  buttonEditSample.setAttribute('disabled', true);
+}
 
 function onsubmitHandler(e) {
    e.preventDefault();
@@ -39,25 +49,27 @@ function onsubmitHandler(e) {
 function onclickHandler() {
    const tubeMixValue = Number.parseInt(tubeMix.value);
 
-   captionTable.textContent = inputTableTitle.value;
+   if(isNaN(tubeMixValue) || inputTableTitle.value.length === 0) {
+      alert("Preencha as colunas de linhas e título!");
+   } else {
+      captionTable.textContent = inputTableTitle.value;
 
-   for (let i = 0; i < tubeMixValue; i++) {
-      const tr = document.createElement('tr');
-      for (let j = 0; j < inputs.length; j++) {
-         const td = document.createElement('td');
-         tr.appendChild(td)
+      for (let i = 0; i < tubeMixValue; i++) {
+         const tr = document.createElement('tr');
+         for (let j = 0; j < inputs.length; j++) {
+            const td = document.createElement('td');
+            tr.appendChild(td)
+         }
+         tableBody.appendChild(tr);
       }
-      tableBody.appendChild(tr);
+   
+      inputTableTitle.value = '';
+      tubeMix.value = '';
+      buttonEditSample.removeAttribute('disabled');
+   
+   
+      form.style.display = "grid";
    }
-
-   inputTableTitle.value = '';
-   inputTableTitle.setAttribute('disabled', true);
-
-   tubeMix.value = '';
-   tubeMix.setAttribute('disabled', true);
-   buttonSample.setAttribute('disabled', true);
-
-   form.style.display = "initial";
 }
 
 function defaultValues() {
@@ -71,4 +83,13 @@ function defaultValues() {
 
 function onchangeHandler(e) {
    inputs[0].value = e.target.value;
+}
+//botão meio errado
+function hideForm() {
+   if(form.style.display == "") {
+      form.style.display = "none";
+   }
+   else {
+      form.style.display = "";
+   }
 }
