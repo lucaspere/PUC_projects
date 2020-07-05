@@ -1,17 +1,20 @@
 #ifndef FUNCIONARIO_H_INCLUDED
 #define FUNCIONARIO_H_INCLUDED
 
+#include <string.h>
+
 struct Funcionario
 {
-    int codigo, telefone, salario;
-    char nome[100], endereco[200], funcao[50], tipo[10];
+    int codigo;
+    float salario;
+    char nome[50], telefone[15], endereco[150], funcao[50], tipo[10];
 };
 
 typedef struct Funcionario funcionario;
 
 FILE *FuncionarioF;
 
-int localiza_funcionario(FILE *FuncionarioF, int codigo)
+int localiza_funcionario(FILE *FuncionarioF, const char *nome)
 {
     int posicao = -1, achou = 0;
 
@@ -23,7 +26,7 @@ int localiza_funcionario(FILE *FuncionarioF, int codigo)
     {
         posicao++;
 
-        if(fun.codigo==codigo)
+        if(!strcmp(fun.nome, nome))
         {
             achou=1;
         }
@@ -39,20 +42,17 @@ int localiza_funcionario(FILE *FuncionarioF, int codigo)
 void cadastrar_funcionario(FILE *FuncionarioF)
 {
     funcionario fun;
-
     int posicao;
 
-    printf("Digite o codigo do funcionario: ");
+    printf("Digite o nome do funcionário: ");
     fflush(stdin);
-    scanf("%d",&fun.codigo);
+    gets(fun.nome);
 
-    posicao=localiza_funcionario(FuncionarioF, fun.codigo);
+    posicao=localiza_funcionario(FuncionarioF, fun.nome);
 
     if (posicao==-1)
     {
-        printf("Digite o nome do funcionário: ");
-        fflush(stdin);
-        gets(fun.nome);
+        fun.codigo = 1 + rand() % 130;
 
         printf("Digite o endereco do funcionário: ");
         fflush(stdin);
@@ -68,19 +68,42 @@ void cadastrar_funcionario(FILE *FuncionarioF)
 
         printf("Digite o salário do funcionário: ");
         fflush(stdin);
-        scanf("%d",&fun.salario);
+        scanf("%f",&fun.salario);
 
         printf("Digite o telefone do funcionário: ");
         fflush(stdin);
-        scanf("%d",&fun.telefone);
+        gets(fun.telefone);
 
-        fseek(FuncionarioF,sizeof(fun) * (posicao),SEEK_SET);
+        fseek(FuncionarioF, sizeof(fun) * (posicao), SEEK_SET);
         fwrite(&fun, sizeof(fun), 1, FuncionarioF);
         fflush(FuncionarioF);
     }
     else
         printf("Funcionário já cadastrado!!\n");
 
+}
+
+void imprime_funcionario(FILE *FuncionarioF, const char *nomeFun)
+{
+    funcionario fun;
+    int posicao;
+
+    posicao = localiza_funcionario(FuncionarioF, nomeFun);
+
+    if(posicao != -1)
+    {
+        fseek(FuncionarioF, sizeof(fun) * (posicao), SEEK_SET);
+        fread(&fun, sizeof(fun), 1, FuncionarioF);
+
+    printf("\n%-9s%-17s%-15s%-14s%-10s%-13s%-s\n", "Codigo", "Nome",
+           "função", "telefone", "salario", "tipo", "endereço");
+
+        printf("%-9d%-17s%-15s%-14d%-10.2f%-13s%-s\n",
+               fun.codigo, fun.nome, fun.funcao,
+               fun.telefone, fun.salario, fun.tipo, fun.endereco);
+    }
+    else
+        printf("Funcionário não localizado\n");
 }
 
 void imprime_funcionarios(FILE *FuncionarioF)
@@ -90,14 +113,14 @@ void imprime_funcionarios(FILE *FuncionarioF)
     fseek(FuncionarioF, 0, SEEK_SET);
     fread(&fun, sizeof(fun), 1, FuncionarioF);
 
-    printf("\n%6s%7s%28s%19s\n", "Codigo", "Nome",
-           "função", "salario");
+    printf("\n%-9s%-17s%-15s%-14s%-10s%-13s%-s\n", "Codigo", "Nome",
+           "função", "telefone", "salario", "tipo", "endereço");
 
     while(!feof(FuncionarioF))
     {
-        printf("%-9d%-22s%-18s%12d\n",
+        printf("%-9d%-17s%-15s%-14d%-10.2f%-13s%-s\n",
                fun.codigo, fun.nome, fun.funcao,
-               fun.salario);
+               fun.telefone, fun.salario, fun.tipo, fun.endereco);
 
 
         fread(&fun, sizeof(fun), 1, FuncionarioF);

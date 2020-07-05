@@ -1,3 +1,14 @@
+/*
+    Trabalho Prático Interdisciplinar
+    Disciplinas: Fundamentos de Engenharia de Software
+    Algoritmos e Estruturas de Dados I
+    Curso: Engenharia de Software
+    Profs.: Maria Augusta Nelson, Roberto Felipe Rocha e Ivre Marjorie R. Machado
+
+    Autor: LUCAS FELLIPPE ALVES PEREIRA
+    DATA: 06-2020
+*/
+
 #include <stdio.h>
 #include <locale.h>
 #include <stdlib.h>
@@ -11,9 +22,14 @@
 
 typedef struct Cliente cliente;
 
-int menu(void);
+int menu();
+int menu_pesquisa();
+int menu_relatorio();
 void abre_arquivos();
 void opcoes();
+void opcoes_pesquisa();
+void opcoes_relatorio();
+void pagar_festa();
 
 int main(void)
 {
@@ -47,38 +63,28 @@ void opcoes()
             system("pause");
             break;
         case 2:
-            printf("\nlistando festa...\n");
-            imprime_festas(festaF);
-            system("pause");
-            break;
-        case 3:
             printf("\npreenchendo o cliente...\n");
             cadastrar_cliente(clientC);
             system("pause");
             break;
-        case 4:
-            printf("\nlistando o cliente...\n");
-            imprime_clientes(clientC);
-            system("pause");
-            break;
-        case 5:
+        case 3:
             printf("\npreenchendo o funcionário...\n");
             cadastrar_funcionario(FuncionarioF);
             system("pause");
             break;
-        case 6:
-            printf("\nlistando o funcionário...\n");
-            imprime_funcionarios(FuncionarioF);
-            system("pause");
-            break;
-        case 7:
+        case 4:
             printf("\npreenchendo o fornecedor...\n");
             cadastrar_fornecedor(fornecedorF);
             system("pause");
             break;
-        case 8:
-            printf("\nlistando o fornecedor...\n");
-            imprime_fornecedores(fornecedorF);
+        case 5:
+            opcoes_pesquisa();
+            break;
+        case 6:
+            opcoes_relatorio();
+            break;
+        case 7:
+            pagar_festa();
             system("pause");
             break;
         default:
@@ -87,6 +93,144 @@ void opcoes()
             break;
         }
     }
+}
+
+int menu(void)
+{
+    int menuChoice;
+    system("cls");
+    printf( "\n\tESCOLHA UMA OPÇÂO\n"
+            "* * * * * * * * * * * * * * * * *\n"
+            "* 1 --> CADASTRAR FESTA         *\n"
+            "*                               *\n"
+            "* 2 --> CADASTRAR CLIENTE       *\n"
+            "*                               *\n"
+            "* 3 --> CADASTRAR FUNCIONÁRIO   *\n"
+            "*                               *\n"
+            "* 4 --> CADASTRAR FORNECEDOR    *\n"
+            "*                               *\n"
+            "* 5 --> PESQUISAR               *\n"
+            "*                               *\n"
+            "* 6 --> RELATÓRIOS              *\n"
+            "*                               *\n"
+            "* 7 --> PAGAR FESTA             *\n"
+            "*                               *\n"
+            "* 9 --> SAIR                    *\n"
+            "*                               *\n"
+            "* * * * * * * * * * * * * * * * *\n?" );
+
+    scanf( "%d", &menuChoice );
+    return menuChoice;
+
+}
+
+void opcoes_pesquisa()
+{
+    int op, cCodigo;
+    char nomeFun[50], nomeForne[50];
+
+    while((op = menu_pesquisa()) != 5)
+    {
+        switch(op)
+        {
+        case 1:
+            fflush(stdin);
+            printf("Digite o código do cliente: ");
+            scanf("%d", &cCodigo);
+            imprime_cliente(clientC, cCodigo);
+            system("pause");
+            break;
+        case 2:
+            fflush(stdin);
+            printf("Digite o nome do funcionário: ");
+            gets(nomeFun);
+            imprime_funcionario(FuncionarioF, nomeFun);
+            system("pause");
+            break;
+        case 3:
+            fflush(stdin);
+            printf("Digite o nome do fornecedor: ");
+            gets(nomeForne);
+            imprime_fornecedor(fornecedorF, nomeForne);
+            system("pause");
+            break;
+        default:
+            printf("\nEscolha incorreta!!\n");
+            system("pause");
+            break;
+        }
+    }
+}
+
+void pagar_festa()
+{
+    printf("\n\t\t\tCONTRATOS");
+    imprime_contratos(contratoC);
+
+    pagar_contrato();
+}
+
+int menu_pesquisa()
+{
+    int menuChoice;
+    system("cls");
+
+    printf( "\n\tDigite sua escolha\n"
+            "* * * * * * * * * * * * * * * * *\n"
+            "* 1 --> PESQUISAR CLIENTE       *\n"
+            "*                               *\n"
+            "* 2 --> PESQUISAR FUNCIONÁRIO   *\n"
+            "*                               *\n"
+            "* 3 --> PESQUISAR FORNECEDOR    *\n"
+            "*                               *\n"
+            "* 5 --> VOLTAR MENU PRINCIPAL   *\n"
+            "*                               *\n"
+            "* * * * * * * * * * * * * * * * *\n?");
+
+    scanf( "%d", &menuChoice);
+    return menuChoice;
+}
+
+void opcoes_relatorio()
+{
+    int op;
+    while((op = menu_relatorio()) != 5)
+    {
+        switch(op)
+        {
+        case 1:
+            relatorio_festa();
+            system("pause");
+            break;
+        case 2:
+            imprime_festas_por_data();
+            system("pause");
+            break;
+        default:
+            printf("\nEscolha incorreta!!\n");
+            system("pause");
+            break;
+        }
+    }
+}
+
+int menu_relatorio()
+{
+    int menuChoice;
+    system("cls");
+    printf( "\n\tDigite sua escolha\n"
+            "* * * * * * * * * * * * * * * * * * * * * *\n"
+            "* 1 --> RELATORIO DE FESTA POR CLIENTE    *\n"
+            "*                                         *\n"
+            "* 2 --> FILTRAR FESTA POR DATA            *\n"
+            "*                                         *\n"
+            "* 5 --> VOLTAR MENU PRINCIPAL             *\n"
+            "*                                         *\n"
+            "* * * * * * * * * * * * * * * * * * * * * *\n?");
+
+
+    scanf( "%d", &menuChoice);
+    return menuChoice;
 }
 
 void abre_arquivos()
@@ -145,29 +289,4 @@ void abre_arquivos()
         }
         system("pause");
     }
-}
-
-int menu(void)
-{
-    int menuChoice;
-    system("cls");
-    imprime_contratos(contratoC);
-    printf( "\nDigite sua escolha\n"
-            "1 - cadastrar festa\n"
-            "2 - listar festa\n"
-            "\n"
-            "3 - cadastrar clientes\n"
-            "4 - listar clientes\n"
-            "\n"
-            "5 - cadastrar funcionários\n"
-            "6 - listar funcionários\n"
-            "\n"
-            "7 - cadastrar fornecedor\n"
-            "8 - listar fornecedores\n"
-            "\n"
-            "9 - termina o programa\n? " );
-
-    scanf( "%d", &menuChoice );
-    return menuChoice;
-
 }

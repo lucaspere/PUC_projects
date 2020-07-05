@@ -1,2 +1,0 @@
-"# salao-de-festa-PUCminas"  git init git add README.md git commit -m "first commit" git remote add origin https://github.com/lucaspere/salao-de-festa-PUCminas.git git push -u origin master                 
-"# salao-de-festa-PUCminas"  git init git add README.md git commit -m "first commit" git remote add origin https://github.com/lucaspere/salao-de-festa-PUCminas.git git push -u origin master                 

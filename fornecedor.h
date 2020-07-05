@@ -1,18 +1,20 @@
 #ifndef FORNECEDOR_H_INCLUDED
 #define FORNECEDOR_H_INCLUDED
 
+#include <string.h>
+
 struct Fornecedor
 
 {
-    int codigo, telefone;
-    char nome[50], produto[50];
+    int codigo;
+    char nome[50], telefone[16],produto[50];
 };
 
 typedef struct Fornecedor fornecedor;
 
 FILE *fornecedorF;
 
-int localiza_fornecedor(FILE *fornecedorF, int codigo)
+int localiza_fornecedor(FILE *fornecedorF, const char *nomeForne)
 {
     fornecedor forne;
     int posicao = -1, achou = 0;
@@ -20,11 +22,12 @@ int localiza_fornecedor(FILE *fornecedorF, int codigo)
     fseek(fornecedorF,0,SEEK_SET);
     fread(&forne, sizeof(forne),1, fornecedorF);
 
+
     while(!feof(fornecedorF) && !achou)
     {
         posicao++;
 
-        if(forne.codigo==codigo)
+        if(!strcmp(forne.nome, nomeForne))
         {
             achou=1;
         }
@@ -43,31 +46,54 @@ void cadastrar_fornecedor(FILE *fornecedorF)
 
     int posicao;
 
-    forne.codigo = 1 + rand() % 130;
+    printf("Digite o nome do fornecedor: ");
+    fflush(stdin);
+    gets(forne.nome);
 
-    posicao=localiza_fornecedor(fornecedorF, forne.codigo);
+    posicao=localiza_fornecedor(fornecedorF, forne.nome);
 
     if (posicao==-1)
     {
-        printf("Digite o nome do fornecedor:");
-        fflush(stdin);
-        gets(forne.nome);
 
-        printf("Digite o produto do fornecedor:");
+        forne.codigo = 1 + rand() % 130;
+        printf("Digite o produto: ");
         fflush(stdin);
         gets(forne.produto);
 
-        printf("Digite o telefone do fornecedor:");
+        printf("Digite o telefone do fornecedor: ");
         fflush(stdin);
-        scanf("%d",&forne.telefone);
+        gets(forne.telefone);
 
         fseek(fornecedorF,sizeof(forne) * (posicao),SEEK_SET);
         fwrite(&forne, sizeof(forne), 1, fornecedorF);
-                    fflush(fornecedorF);
+        fflush(fornecedorF);
     }
     else
         printf("Fornecedor já cadastrado!!\n");
 
+}
+
+void imprime_fornecedor(FILE *fornecedorF, const char *nomeForne)
+{
+    fornecedor forne;
+    int posicao;
+
+    posicao = localiza_fornecedor(fornecedorF, nomeForne);
+
+    if(posicao != -1)
+    {
+        fseek(fornecedorF, sizeof(forne) * (posicao), SEEK_SET);
+        fread(&forne, sizeof(forne), 1, fornecedorF);
+
+        printf("\n%-9s%-18s%-15s%-15s\n", "Codigo", "Nome",
+               "Produto", "Telefone");
+
+        printf("%-9d%-18s%-15s%-15s\n",
+               forne.codigo, forne.nome, forne.produto,
+               forne.telefone);
+    }
+    else
+        printf("Fornecedor não localizado\n");
 }
 
 void imprime_fornecedores(FILE *fornecedorF)
@@ -77,12 +103,12 @@ void imprime_fornecedores(FILE *fornecedorF)
     fseek(fornecedorF, 0, SEEK_SET);
     fread(&forne, sizeof(forne), 1, fornecedorF);
 
-    printf("\n%6s%7s%28s%19s\n", "Codigo", "Nome",
+    printf("\n%-9s%-18s%-15s%-15s\n", "Codigo", "Nome",
            "Produto", "Telefone");
 
     while(!feof(fornecedorF))
     {
-        printf("%-9d%-22s%-18s%12d\n",
+        printf("%-9d%-18s%-15s%-15s\n",
                forne.codigo, forne.nome, forne.produto,
                forne.telefone);
 
