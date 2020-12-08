@@ -1,7 +1,6 @@
 # Criado pelo Lucas Pereira. Data da Finalização: 07-12-2020
 
 .data
-	entradas_lote: .space 48 # Vetor de valores para usar no treinamento
 	ta:.float 0.02 # Taxa de Atualização
 	peso1:.float 0.00 # Peso 1
 	peso2: .float 0.80 # Peso 2
@@ -28,16 +27,18 @@
 	
 	main:
 		# O neurônio vai ser treinado com os dados do registrador $a0 e $a0 que é incrementado até o número 7
-		while:
-		 slti $t6, $t5, 8
-		 beq $t6, $0, sair
-
+		addi $t5, $t5, 1 # Vai atribuir o valor 1 ao registrador $t5
+	
+		while: 
+		 slti $t6, $t5, 8 # Se $t5 for menor a 8, atribuir $t6 o valor 1 senão valor 0
+		 beq $t6, $0, sair # Se $t6 for igual a zero, pular para "sair"
+		# Enquanto $t5 for menor a 8, faça:
 		  add $a0, $0, $t5
 		  add $a1, $0, $t5
 		  jal treine_neuronio
 
-		  addi $t5, $t5, 1
-		  j while
+		  addi $t5, $t5, 1 # Adicione 1 ao registrador $t5
+		  j while # Volte para o início do loop
 
 		sair:
 		  # Mostra a mensagem
@@ -130,7 +131,7 @@
 	faca_calculos_de_peso:
 		mul.s $f5, $f2, $f3 # Registrador $f5 = erro * ta
 		mtc1 $a0, $f6       # Move o argumento $a0 (entrada) para o registrador $f6
-		cvt.s.w $f6, $f6    # Convite o valor inteiro para double %f6 = (double) int %f6
+		cvt.s.w $f6, $f6    # Converte o valor inteiro para double %f6 = (double) int %f6
 		mul.s $f7, $f5, $f6 # Multiplica $f7 = $f5 (erro * ta) * entrada
 
 		jr $ra
