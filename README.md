@@ -19,8 +19,8 @@ Exemplo: ``node main.js data.csv``
 - <strike>Executar em um ambiente Linux Ubuntu 20.04</strike>
 - Construir um portfólio de até  N ativos, sendo  N o número de ativos na base de dados.
 - Suportar uma solução gulosa para construção do portfólio.
-- Suportar uma estratégia aleatória para construção do portfólio.
-- Suportar um algoritmo de força bruta com podas para construção do portfólio.
+- <strike>Suportar uma estratégia aleatória para construção do portfólio.</strike>
+- <strike>Suportar um algoritmo de força bruta com podas para construção do portfólio.</strike>
 - <strike>Ler a base de dados de um arquivo com estrutura compatível ao fornecido.</strike>
 - <strike>Possibilitar a especificação do arquivo de dados de entrada via linha de comando</strike>
 - Interface de linha de comando para interação com o programa
