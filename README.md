@@ -17,13 +17,13 @@ Exemplo: ``node main.js data.csv``
 - <strike>Ser implementada em C, C++, GoLang, Rust, Python, Java, JavaScript e Ruby</strike>
 - <strike>Não exigir nenhuma instalação de biblioteca de terceiros</strike>
 - <strike>Executar em um ambiente Linux Ubuntu 20.04</strike>
-- Construir um portfólio de até  N ativos, sendo  N o número de ativos na base de dados.
-- Suportar uma solução gulosa para construção do portfólio.
+- <strike>Construir um portfólio de até  N ativos, sendo  N o número de ativos na base de dados.</strike>
+- <strike>Suportar uma solução gulosa para construção do portfólio.</strike>
 - <strike>Suportar uma estratégia aleatória para construção do portfólio.</strike>
-- <strike>Suportar um algoritmo de força bruta com podas para construção do portfólio.</strike>
+- **Suportar um algoritmo de força bruta com podas para construção do portfólio.**
 - <strike>Ler a base de dados de um arquivo com estrutura compatível ao fornecido.</strike>
 - <strike>Possibilitar a especificação do arquivo de dados de entrada via linha de comando</strike>
-- Interface de linha de comando para interação com o programa
+- **Interface de linha de comando para interação com o programa**
 
 > **<strike>Concluído</strike>, Falta**
 
