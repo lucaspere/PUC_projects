@@ -1,6 +1,6 @@
 const {
   cal_portfolio,
-} = require("./calculos");
+} = require("../lib/calculos");
 
 const aleatorio = (ativos, tamPort) => {
   const portfolio = {
@@ -10,7 +10,6 @@ const aleatorio = (ativos, tamPort) => {
     ativos: [],
   };
 
-  let i = 0;
   while (portfolio.ativos.length < tamPort) {
     const random = Math.floor(Math.random() * ativos.length);
     if (!ativos[random].visited) {
