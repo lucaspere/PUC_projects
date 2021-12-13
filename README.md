@@ -10,8 +10,8 @@ Windows
 choco install nvs ou instalr o .exe
 
 ### Executando o código
-Usar o comando: ``node main.js [PATH DO ARQUIVO]``<br>
-Exemplo: ``node main.js data.csv``
+Usar o comando: ``node main.js [Quantidade de ativos na carteira] [PATH DO ARQUIVO]``<br>
+Exemplo: ``node main.js 5 data.csv``. Este comando vai executar com o arquivo ***data.csv*** para gerar um portfólio de 5 ativos.  
 
 ## Especificação Técnica
 - <strike>Ser implementada em C, C++, GoLang, Rust, Python, Java, JavaScript e Ruby</strike>
