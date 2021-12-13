@@ -11,9 +11,8 @@ const guloso = (data, tamPort) => {
     // Vai filtrar os ativos que ainda não foram usados (Não visitados)
     const ativosNaoVisitados = data.filter((ativo) => !ativo.visitado);
     // Vai guardar o melhor local no loop
-    const melhorLocal = {
-      ...cal_portfolio([data[proximo], ativosNaoVisitados[0]]),
-      ativos,
+    const ativos = [data[proximo], ativosNaoVisitados[0]];
+    const melhorLocal = {      ...cal_portfolio(ativos),      ativos,
     };
 
     // Um loop em todos os ativos que ainda falta visitar
