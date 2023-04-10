@@ -1,0 +1,122 @@
+
+
+a {
+   cursor: pointer;
+}
+.teste {
+   margin: 3rem auto 1rem auto;
+}
+main {
+   margin-top: 25px;
+}
+
+@media screen and (min-width: 0) {
+
+   aside {
+      display: none !important;
+   }
+
+   .container1 {
+      border: 2px solid var(--secondary);
+      margin: 5px auto;
+   }
+
+   .container-img {
+      max-width: 36.813rem;
+   }
+
+   .container-img img {
+      max-width: 100%;
+      height: auto;
+   }
+   .container-body {
+      margin: 15px;
+   }
+   .info {
+      font-weight: lighter;
+      font-style: italic;
+   }
+   .title {
+      font-weight: 600;
+   }
+   .container-nav {
+      width: 300px;
+   }
+   .container-nav-item {
+      display: flex;
+      list-style: none;
+      justify-content: space-between;
+      font-size: 20px;
+      padding: 0;
+   }
+ }
+
+@media screen and (min-width: 576px) {
+   .container1 {
+      border: 2px solid var(--secondary);
+      margin: 5px auto;
+   }
+
+   .container-img {
+      max-width: 36.813rem;
+   }
+
+   .container-img img {
+      max-width: 100%;
+      height: auto;
+   }
+
+.container-nav {
+   width: 450px;
+}
+.container-nav-item {
+   display: flex;
+   list-style: none;
+   justify-content: space-evenly;
+   font-size: 20px;
+   padding: 0;
+   padding-left: 20px !important;
+}
+ }
+ @media screen and (min-width: 768px) {
+    aside {
+       display: initial !important;
+    }
+   .container1 {
+      display: flex;
+      border: 2px solid var(--secondary);
+      margin: 5px auto;
+   }
+
+   .container-img {
+      max-width: unset;
+   }
+
+   .container-img img {
+      width: 250px;
+      height: auto;
+      max-width: unset;
+   }
+   .container-body {
+      margin: unset;
+      margin-left: 20px;
+   }
+   .title {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 0;
+   }
+
+   section:nth-child(2){
+      border: 1.5px solid var(--light);
+   }
+   .container-nav {
+      margin-top: 10px;
+   }
+   .container-nav-item {
+      list-style: square;
+      font-size: 20px;
+      display: block;
+      padding: revert;
+   }
+ }
